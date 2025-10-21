@@ -18,14 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
 
+        <!-- Login es la pantalla inicial -->
         <activity
-            android:name=".MainActivity"
-            android:exported="true">  <!-- 👈 Requisito Android 12+ -->
+            android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
+        <!-- MainActivity normal (sin intent-filter de launcher) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
     </application>
 </manifest>

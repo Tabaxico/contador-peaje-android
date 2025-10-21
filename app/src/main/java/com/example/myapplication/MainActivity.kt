@@ -43,8 +43,13 @@ class MainActivity : AppCompatActivity() {
         val repo = Repository(dao)
         vm = ViewModelProvider(this, MainViewModelFactory(repo))[MainViewModel::class.java]
 
-        lifecycleScope.launch { vm.monthlyCount.collect { tvMes.text = "Mes actual: $it autos" } }
-        vm.refreshMonthly()
+        lifecycleScope.launch {
+            vm.monthlyCount.collect { n ->
+                val label = DateUtils.currentMonthLabel()   // p. ej. "Octubre 2025"
+                val unidad = if (n == 1) "auto" else "autos"
+                tvMes.text = "$label: $n $unidad"
+            }
+        }
 
         btnConectar.setOnClickListener { conectar() }
         btnSimular.setOnClickListener { vm.addEventNow() }
